@@ -15,8 +15,8 @@ on:
     types: [started]
 
 env:
-  MANIFEST: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp
-  MANIFEST_BRANCH: twrp-11
+  MANIFEST: https://github.com/SHRP/manifest
+  MANIFEST_BRANCH: v3_11.0
   DEVICE: penrose
   DT_LINK: https://github.com/desilover26/penrose -b main
   DT_PATH: device/blackshark/penrose
@@ -58,6 +58,7 @@ jobs:
          run: |
               cd work
               . build/envsetup.sh &&lunch twrp_$DEVICE-eng &&export ALLOW_MISSING_DEPENDENCIES=true && mka $TARGET
+              cp  out/target/product/penrose/recovery.img    out/target/product/penrose/recovery-penrose-twrp11-$(date +"%Y%m%d-%H%M").img
              
        - name: Release recovery image
          uses: softprops/action-gh-release@v1
